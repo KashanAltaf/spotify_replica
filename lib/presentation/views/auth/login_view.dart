@@ -18,9 +18,13 @@ class LoginView extends StatelessWidget {
     
     return Scaffold(
       backgroundColor: AppColors.colorBlack,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColors.colorBlack,
+      ),
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.only(top: Get.height * 0.25, left: 16, right: 16),
+        padding: EdgeInsets.only(top: Get.height * 0.2, left: 16, right: 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +44,7 @@ class LoginView extends StatelessWidget {
                 color: AppColors.colorWhite
               ),
             ),
-            SizedBox(height: Get.height * 0.2),
+            SizedBox(height: Get.height * 0.15),
             ButtonWidget(
                 title: 'Continue with email',
                 isIcon: true,
@@ -88,7 +92,7 @@ class LoginView extends StatelessWidget {
             ),
             TextButton(
                 onPressed: (){
-                  Get.offNamed(Routes.register);
+                  Get.toNamed(Routes.register);
                 },
                 child: Text(
                   'Sign Up',

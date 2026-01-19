@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spotify_replica/core/theme/app_colors.dart';
+import '../../../core/utils/app_assets.dart';
+import '../../../core/widgets/button_widget.dart';
 import '../../routes/app_routes.dart';
 import '../../../core/utils/validators.dart';
 
@@ -9,101 +12,110 @@ class RegisterView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final nameController = TextEditingController();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final confirmPasswordController = TextEditingController();
-    
+    // final formKey = GlobalKey<FormState>();
+    // final nameController = TextEditingController();
+    // final emailController = TextEditingController();
+    // final passwordController = TextEditingController();
+    // final confirmPasswordController = TextEditingController();
+    //
+
     return Scaffold(
+      backgroundColor: AppColors.colorBlack,
       appBar: AppBar(
-        title: const Text('Register'),
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColors.colorWhite,
+          ),
+        ),
+        backgroundColor: AppColors.colorBlack,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: formKey,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.only(top: Get.height * 0.2, left: 16, right: 16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 32),
+              Image.asset(
+                AppAssets.iconLogo,
+                color: AppColors.colorWhite,
+                height: 97,
+                width: 97,
+              ),
+              SizedBox(height: 50,),
               Text(
-                'Create Account',
-                style: Theme.of(context).textTheme.headlineMedium,
+                'Sign up to start\nlistening',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 32,
+                    color: AppColors.colorWhite
+                ),
+                maxLines: 2,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 48),
-              
-              // Name field
-              TextFormField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Name',
-                  prefixIcon: Icon(Icons.person),
-                ),
-                validator: (value) => Validators.required(value, fieldName: 'Name'),
-              ),
-              const SizedBox(height: 16),
-              
-              // Email field
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
-                ),
-                validator: Validators.email,
-              ),
-              const SizedBox(height: 16),
-              
-              // Password field
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
-                ),
-                validator: Validators.password,
-              ),
-              const SizedBox(height: 16),
-              
-              // Confirm password field
-              TextFormField(
-                controller: confirmPasswordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Confirm Password',
-                  prefixIcon: Icon(Icons.lock_outline),
-                ),
-                validator: (value) {
-                  if (value != passwordController.text) {
-                    return 'Passwords do not match';
+              SizedBox(height: Get.height * 0.1),
+              ButtonWidget(
+                  title: 'Continue with email',
+                  isIcon: true,
+                  path: AppAssets.iconEmail,
+                  textColor: AppColors.colorBlack,
+                  radius: 40,
+                  onPress: (){
+                    //Get.offNamed();
                   }
-                  return null;
-                },
               ),
-              const SizedBox(height: 24),
-              
-              // Register button
-              ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    // TODO: Add registration logic here
-                    Get.offAllNamed(Routes.home);
+              SizedBox(height: 16,),
+              ButtonWidget(
+                  title: 'Continue with Google',
+                  isIcon: true,
+                  path: AppAssets.iconGoogle,
+                  textColor: AppColors.colorWhite,
+                  borderColor: AppColors.grayBgSecondary,
+                  buttonColor: Colors.transparent,
+                  radius: 40,
+                  onPress: (){
+                    //Get.offNamed();
                   }
-                },
-                child: const Text('Register'),
               ),
-              const SizedBox(height: 16),
-              
-              // Login link
+              SizedBox(height: 16,),
+              ButtonWidget(
+                  title: 'Continue with Facebook',
+                  isIcon: true,
+                  path: AppAssets.iconFacebook,
+                  textColor: AppColors.colorWhite,
+                  borderColor: AppColors.grayBgSecondary,
+                  buttonColor: Colors.transparent,
+                  radius: 40,
+                  onPress: (){
+                    //Get.offNamed();
+                  }
+              ),
+              SizedBox(height: 60,),
+              Text(
+                'Already have an account?',
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    color: AppColors.colorWhite
+                ),
+              ),
               TextButton(
-                onPressed: () {
-                  Get.back();
+                onPressed: (){
+                  Get.offNamed(Routes.login);
                 },
-                child: const Text('Already have an account? Login'),
+                child: Text(
+                  'Log In',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.colorWhite
+                  ),
+                ),
               ),
             ],
           ),
