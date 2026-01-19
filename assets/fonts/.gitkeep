@@ -1,0 +1,16 @@
+# Fonts Directory
+# Place your custom font files here (TTF, OTF, etc.)
+# 
+# Recommended structure:
+# - Circular/
+#   - Circular-Regular.ttf
+#   - Circular-Medium.ttf
+#   - Circular-Bold.ttf
+#   - Circular-Black.ttf
+# - Gotham/
+#   - Gotham-Regular.ttf
+#   - Gotham-Medium.ttf
+#   - Gotham-Bold.ttf
+# 
+# After adding fonts, update pubspec.yaml with font family definitions
+

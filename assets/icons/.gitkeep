@@ -1,0 +1,20 @@
+# Icons Directory
+# Place your icon assets here (SVG, PNG, etc.)
+# 
+# Recommended structure:
+# - home.svg
+# - search.svg
+# - library.svg
+# - profile.svg
+# - play.svg
+# - pause.svg
+# - next.svg
+# - previous.svg
+# - like.svg
+# - liked.svg
+# - share.svg
+# - more.svg
+# 
+# For vector icons, prefer SVG format
+# For raster icons, use PNG with appropriate resolutions (@1x, @2x, @3x)
+

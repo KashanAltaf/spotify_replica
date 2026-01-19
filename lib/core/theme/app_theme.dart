@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'app_colors.dart';
 
 /// Application theme configuration
 class AppTheme {
   static final GetStorage _storage = GetStorage();
-  
-  // Color palette
-  static const Color primaryColor = Color(0xFF1DB954); // Spotify green
-  static const Color secondaryColor = Color(0xFF191414); // Spotify black
-  static const Color backgroundColor = Color(0xFF121212);
-  static const Color surfaceColor = Color(0xFF1E1E1E);
-  static const Color errorColor = Color(0xFFCF6679);
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFFB3B3B3);
   
   // Light theme
   static ThemeData get lightTheme {
@@ -20,17 +12,17 @@ class AppTheme {
       useMaterial3: true,
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryColor,
+        seedColor: AppColors.primary,
         brightness: Brightness.light,
       ),
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: AppColors.grayBgSecondary,
       appBarTheme: const AppBarTheme(
         centerTitle: true,
         elevation: 0,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
@@ -47,18 +39,18 @@ class AppTheme {
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryColor,
+        seedColor: AppColors.primary,
         brightness: Brightness.dark,
       ),
-      scaffoldBackgroundColor: backgroundColor,
+      scaffoldBackgroundColor: AppColors.grayBgPrimary,
       appBarTheme: const AppBarTheme(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: backgroundColor,
-        foregroundColor: textPrimary,
+        backgroundColor: AppColors.grayBgPrimary,
+        foregroundColor: AppColors.textColor,
       ),
       cardTheme: CardThemeData(
-        color: surfaceColor,
+        //color: AppColors.surface,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -66,7 +58,7 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
@@ -75,8 +67,8 @@ class AppTheme {
         ),
       ),
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: textPrimary),
-        bodyMedium: TextStyle(color: textSecondary),
+        bodyLarge: TextStyle(color: AppColors.textColor),
+        bodyMedium: TextStyle(color: AppColors.textColor),
       ),
     );
   }
