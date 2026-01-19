@@ -10,9 +10,9 @@ class ButtonWidget extends StatefulWidget {
   final bool loading;
   final String title;
   final double height, width;
-  final VoidCallback onPress;
+  final VoidCallback? onPress;
   final Color textColor, buttonColor, borderColor;
-  final String? path;
+  final String path;
   final double radius;
   final double fontSize;
   final FontWeight fontweight;
@@ -26,7 +26,7 @@ class ButtonWidget extends StatefulWidget {
     this.textColor = Colors.white,
     required this.title,
     this.isIcon = false,
-    this.path,
+    this.path = '',
     this.iconHeight = 24,
     this.iconWidth = 24,
     required this.onPress,
@@ -47,7 +47,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onPress,
+      onTap: widget.onPress == null ? null : () => widget.onPress!(),
       child: Container(
         height: widget.height,
         width: widget.width,
@@ -72,14 +72,13 @@ class _ButtonWidgetState extends State<ButtonWidget> {
           : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(
-                  widget.path!,
+                  widget.path,
                   height: widget.iconHeight,
                   width: widget.iconWidth,
                 ),
-                SizedBox(width: Get.width * 0.2,),
                 Text(
                   widget.title,
                   style: Theme.of(
@@ -89,7 +88,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
                       fontWeight: widget.fontweight,
                       fontSize: widget.fontSize
                   ),
-                )
+                ),
+                SizedBox.shrink(),
               ],
             ),
           ),

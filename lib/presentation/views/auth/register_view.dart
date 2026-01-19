@@ -66,7 +66,7 @@ class RegisterView extends StatelessWidget {
                   textColor: AppColors.colorBlack,
                   radius: 40,
                   onPress: (){
-                    //Get.offNamed();
+                    Get.toNamed(Routes.createAccount);
                   }
               ),
               SizedBox(height: 16,),

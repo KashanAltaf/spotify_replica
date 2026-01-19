@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:spotify_replica/presentation/views/auth/create_account_view.dart';
 import '../views/splash/splash_view.dart';
 import '../views/auth/landing_page.dart';
 import '../views/auth/login_view.dart';
@@ -44,6 +45,11 @@ class AppPages {
     GetPage(
       name: Routes.profile,
       page: () => const ProfileView(),
+    ),
+
+    GetPage(
+      name: Routes.createAccount,
+      page: () => const CreateAccountView(),
     ),
   ];
 }

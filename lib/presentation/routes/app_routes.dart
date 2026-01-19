@@ -6,5 +6,6 @@ abstract class Routes {
   static const home = '/home';
   static const profile = '/profile';
   static const landing = '/landing_page';
+  static const createAccount = '/create_account_view';
 }
 
