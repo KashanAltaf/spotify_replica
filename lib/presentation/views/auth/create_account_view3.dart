@@ -6,20 +6,17 @@ import 'package:spotify_replica/core/widgets/button_widget.dart';
 import 'package:spotify_replica/core/widgets/custom_text_form_field.dart';
 import 'package:spotify_replica/presentation/controllers/create_account_controller.dart';
 
-import '../../routes/app_routes.dart';
-
-class CreateAccountView extends StatefulWidget {
-  const CreateAccountView({super.key});
+class CreateAccountView3 extends StatefulWidget {
+  const CreateAccountView3({super.key});
 
   @override
-  State<CreateAccountView> createState() => _CreateAccountViewState();
+  State<CreateAccountView3> createState() => _CreateAccountView3State();
 }
 
-class _CreateAccountViewState extends State<CreateAccountView> {
+class _CreateAccountView3State extends State<CreateAccountView3> {
 
   final formKey = GlobalKey<FormState>();
   final controller = Get.put(CreateAccountController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,31 +46,15 @@ class _CreateAccountViewState extends State<CreateAccountView> {
         ),
         backgroundColor: AppColors.colorBlack,
         body: Padding(
-            padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             Form(
-               key: formKey,
-               child: CustomTextFormField(
-                 controller: controller.emailController,
-                    label: 'What\'s your email?',
-                 validator: (value){
-                   if(value.toString().isEmpty){
-                     return 'Email cannot be empty';
-                   }
-                 },
-                ),
-             ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'You\’ll need to confirm this email later.',
-                  style: TextStyle(
-                    fontSize: 8,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.colorWhite
-                  ),
+              Form(
+                key: formKey,
+                child: CustomTextFormField(
+                  controller: controller.genderController,
+                  label: 'What\'s your gender?',
                 ),
               ),
               SizedBox(height: 50,),
@@ -83,13 +64,14 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                     height: 42,
                     radius: 40,
                     textColor: AppColors.colorBlack,
-                    buttonColor: controller.isEmailFilled.value ? AppColors.primary : Color(0xff535353),
+                    buttonColor: controller.isGenderFilled.value ? AppColors.primary : Color(0xff535353),
                     borderColor: Colors.transparent,
                     width: 82,
                     onPress: (){
-                      controller.goNext();
+                      controller.goNext3();
                     }
-                ),),
+                ),
+              ),
               ),
             ],
           ),

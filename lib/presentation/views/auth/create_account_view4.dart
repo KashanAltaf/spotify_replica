@@ -8,14 +8,14 @@ import 'package:spotify_replica/presentation/controllers/create_account_controll
 
 import '../../routes/app_routes.dart';
 
-class CreateAccountView extends StatefulWidget {
-  const CreateAccountView({super.key});
+class CreateAccountView4 extends StatefulWidget {
+  const CreateAccountView4({super.key});
 
   @override
-  State<CreateAccountView> createState() => _CreateAccountViewState();
+  State<CreateAccountView4> createState() => _CreateAccountView4State();
 }
 
-class _CreateAccountViewState extends State<CreateAccountView> {
+class _CreateAccountView4State extends State<CreateAccountView4> {
 
   final formKey = GlobalKey<FormState>();
   final controller = Get.put(CreateAccountController());
@@ -49,30 +49,30 @@ class _CreateAccountViewState extends State<CreateAccountView> {
         ),
         backgroundColor: AppColors.colorBlack,
         body: Padding(
-            padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             Form(
-               key: formKey,
-               child: CustomTextFormField(
-                 controller: controller.emailController,
-                    label: 'What\'s your email?',
-                 validator: (value){
-                   if(value.toString().isEmpty){
-                     return 'Email cannot be empty';
-                   }
-                 },
+              Form(
+                key: formKey,
+                child: CustomTextFormField(
+                  controller: controller.emailController,
+                  label: 'What\'s your email?',
+                  validator: (value){
+                    if(value.toString().isEmpty){
+                      return 'Email cannot be empty';
+                    }
+                  },
                 ),
-             ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   'You\’ll need to confirm this email later.',
                   style: TextStyle(
-                    fontSize: 8,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.colorWhite
+                      fontSize: 8,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.colorWhite
                   ),
                 ),
               ),

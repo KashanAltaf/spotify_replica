@@ -7,5 +7,8 @@ abstract class Routes {
   static const profile = '/profile';
   static const landing = '/landing_page';
   static const createAccount = '/create_account_view';
+  static const createAccount2 = '/create_account_view2';
+  static const createAccount3 = '/create_account_view3';
+  static const createAccount4 = '/create_account_view4';
 }
 
