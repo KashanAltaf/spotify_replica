@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:spotify_replica/core/theme/app_colors.dart';
 import 'package:spotify_replica/core/theme/app_theme.dart';
 import 'package:spotify_replica/core/utils/app_assets.dart';
+import 'package:spotify_replica/core/widgets/button_widget.dart';
+import 'package:spotify_replica/presentation/routes/app_routes.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -72,43 +76,23 @@ class _LandingPageState extends State<LandingPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              height: 51,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: AppColors.primary,
-              ),
-              child: Center(
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    color: AppColors.colorWhite,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+            ButtonWidget(
+                title: 'Sign Up',
+                radius: 40,
+                onPress: (){
+                  Get.offNamed(Routes.register);
+                },
+              textColor: AppColors.colorBlack,
             ),
             SizedBox(height: 16),
-            Container(
-              height: 51,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: Colors.transparent,
-                border: Border.fromBorderSide(BorderSide(color: AppColors.grayBgSecondary)),
-              ),
-              child: Center(
-                child: Text(
-                  'Log in',
-                  style: TextStyle(
-                    color: AppColors.colorWhite,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+            ButtonWidget(
+                title: 'Log In',
+                radius: 40,
+                buttonColor: Colors.transparent,
+                borderColor: AppColors.grayBgSecondary,
+                onPress: (){
+                  Get.offNamed(Routes.login);
+                }
             ),
           ],
         ),
