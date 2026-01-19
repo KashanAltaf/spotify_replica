@@ -88,7 +88,7 @@ class LoginView extends StatelessWidget {
             ),
             TextButton(
                 onPressed: (){
-                  Get.offNamed(Routes.login);
+                  Get.offNamed(Routes.register);
                 },
                 child: Text(
                   'Sign Up',
