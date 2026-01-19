@@ -17,6 +17,9 @@ class AppAssets {
   
   // Icons
   static const String iconLogo = '$iconsPath/spotify_logo.png';
+  static const String iconEmail = '$iconsPath/emailIcon.png';
+  static const String iconGoogle = '$iconsPath/googleIcon.png';
+  static const String iconFacebook = '$iconsPath/facebookIcon.png';
   static const String iconSearch = '$iconsPath/search.svg';
   static const String iconLibrary = '$iconsPath/library.svg';
   static const String iconProfile = '$iconsPath/profile.svg';

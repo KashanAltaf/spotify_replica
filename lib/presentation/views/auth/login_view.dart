@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spotify_replica/core/utils/app_assets.dart';
+import 'package:spotify_replica/core/widgets/button_widget.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../routes/app_routes.dart';
 import '../../../core/utils/validators.dart';
 
@@ -9,74 +12,94 @@ class LoginView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+    // final formKey = GlobalKey<FormState>();
+    // final emailController = TextEditingController();
+    // final passwordController = TextEditingController();
     
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
+      backgroundColor: AppColors.colorBlack,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 32),
-              Text(
-                'Welcome Back',
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
+        physics: NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.only(top: Get.height * 0.25, left: 16, right: 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppAssets.iconLogo,
+              color: AppColors.colorWhite,
+              height: 97,
+              width: 97,
+            ),
+            SizedBox(height: 50,),
+            Text(
+              'Login to Spotify',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 32,
+                color: AppColors.colorWhite
               ),
-              const SizedBox(height: 48),
-              
-              // Email field
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+            ),
+            SizedBox(height: Get.height * 0.2),
+            ButtonWidget(
+                title: 'Continue with email',
+                isIcon: true,
+                path: AppAssets.iconEmail,
+                textColor: AppColors.colorBlack,
+                radius: 40,
+                onPress: (){
+                  //Get.offNamed();
+                }
+            ),
+            SizedBox(height: 16,),
+            ButtonWidget(
+                title: 'Continue with Google',
+                isIcon: true,
+                path: AppAssets.iconGoogle,
+                textColor: AppColors.colorWhite,
+                borderColor: AppColors.grayBgSecondary,
+                buttonColor: Colors.transparent,
+                radius: 40,
+                onPress: (){
+                  //Get.offNamed();
+                }
+            ),
+            SizedBox(height: 16,),
+            ButtonWidget(
+                title: 'Continue with Facebook',
+                isIcon: true,
+                path: AppAssets.iconFacebook,
+                textColor: AppColors.colorWhite,
+                borderColor: AppColors.grayBgSecondary,
+                buttonColor: Colors.transparent,
+                radius: 40,
+                onPress: (){
+                  //Get.offNamed();
+                }
+            ),
+            SizedBox(height: 60,),
+            Text(
+              'Don\'t have an account?',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: AppColors.colorWhite
                 ),
-                validator: Validators.email,
-              ),
-              const SizedBox(height: 16),
-              
-              // Password field
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+            ),
+            TextButton(
+                onPressed: (){
+                  Get.offNamed(Routes.login);
+                },
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.colorWhite
+                  ),
                 ),
-                validator: Validators.password,
-              ),
-              const SizedBox(height: 24),
-              
-              // Login button
-              ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    // TODO: Add login logic here
-                    Get.offAllNamed(Routes.home);
-                  }
-                },
-                child: const Text('Login'),
-              ),
-              const SizedBox(height: 16),
-              
-              // Register link
-              TextButton(
-                onPressed: () {
-                  Get.toNamed(Routes.register);
-                },
-                child: const Text('Don\'t have an account? Register'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
