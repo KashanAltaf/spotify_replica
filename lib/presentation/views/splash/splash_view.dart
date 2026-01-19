@@ -21,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
   }
   
   Future<void> _navigateToNext() async {
-    await Future.delayed(AppConstants.shortAnimation);
+    await Future.delayed(AppConstants.longAnimation);
     Get.offAllNamed(Routes.landing);
   }
   
