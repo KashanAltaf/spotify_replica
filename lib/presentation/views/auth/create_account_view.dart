@@ -62,6 +62,12 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                    if(value.toString().isEmpty){
                      return 'Email cannot be empty';
                    }
+                   final bool emailValid = RegExp(
+                       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                       .hasMatch(value!);
+                   if (!emailValid) {
+                     return 'Please enter a valid email.';
+                   }
                  },
                 ),
              ),

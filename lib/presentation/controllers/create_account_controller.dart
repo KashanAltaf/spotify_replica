@@ -15,6 +15,10 @@ class CreateAccountController extends GetxController {
   final isGenderFilled = false.obs;
   final isNameFilled = false.obs;
 
+  final RxBool firstChecked = false.obs;
+  final RxBool secondChecked = false.obs;
+
+
   @override
   void onInit() {
     super.onInit();
