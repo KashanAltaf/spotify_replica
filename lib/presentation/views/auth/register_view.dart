@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/auth_controller.dart';
 import '../../routes/app_routes.dart';
 import '../../../core/utils/validators.dart';
-import '../../../core/widgets/loading_widget.dart';
 
 /// Register view
 class RegisterView extends StatelessWidget {
@@ -11,7 +9,6 @@ class RegisterView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<AuthController>();
     final formKey = GlobalKey<FormState>();
     final nameController = TextEditingController();
     final emailController = TextEditingController();
@@ -22,123 +19,96 @@ class RegisterView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Register'),
       ),
-      body: Obx(() {
-        if (controller.isLoading) {
-          return const LoadingWidget(message: 'Registering...');
-        }
-        
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 32),
-                Text(
-                  'Create Account',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 32),
+              Text(
+                'Create Account',
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 48),
+              
+              // Name field
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  prefixIcon: Icon(Icons.person),
                 ),
-                const SizedBox(height: 48),
-                
-                // Name field
-                TextFormField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    prefixIcon: Icon(Icons.person),
-                  ),
-                  validator: (value) => Validators.required(value, fieldName: 'Name'),
+                validator: (value) => Validators.required(value, fieldName: 'Name'),
+              ),
+              const SizedBox(height: 16),
+              
+              // Email field
+              TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
                 ),
-                const SizedBox(height: 16),
-                
-                // Email field
-                TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
-                  ),
-                  validator: Validators.email,
+                validator: Validators.email,
+              ),
+              const SizedBox(height: 16),
+              
+              // Password field
+              TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
                 ),
-                const SizedBox(height: 16),
-                
-                // Password field
-                TextFormField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                  validator: Validators.password,
+                validator: Validators.password,
+              ),
+              const SizedBox(height: 16),
+              
+              // Confirm password field
+              TextFormField(
+                controller: confirmPasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Confirm Password',
+                  prefixIcon: Icon(Icons.lock_outline),
                 ),
-                const SizedBox(height: 16),
-                
-                // Confirm password field
-                TextFormField(
-                  controller: confirmPasswordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirm Password',
-                    prefixIcon: Icon(Icons.lock_outline),
-                  ),
-                  validator: (value) {
-                    if (value != passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 8),
-                
-                // Error message
-                if (controller.errorMessage.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Text(
-                      controller.errorMessage,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                
-                // Register button
-                ElevatedButton(
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      controller.clearError();
-                      final success = await controller.register(
-                        emailController.text.trim(),
-                        passwordController.text,
-                        nameController.text.trim(),
-                      );
-                      
-                      if (success) {
-                        Get.offAllNamed(Routes.home);
-                      }
-                    }
-                  },
-                  child: const Text('Register'),
-                ),
-                const SizedBox(height: 16),
-                
-                // Login link
-                TextButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: const Text('Already have an account? Login'),
-                ),
-              ],
-            ),
+                validator: (value) {
+                  if (value != passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24),
+              
+              // Register button
+              ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    // TODO: Add registration logic here
+                    Get.offAllNamed(Routes.home);
+                  }
+                },
+                child: const Text('Register'),
+              ),
+              const SizedBox(height: 16),
+              
+              // Login link
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: const Text('Already have an account? Login'),
+              ),
+            ],
           ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }
