@@ -15,9 +15,11 @@ void main() async {
   // Load environment variables
   try {
     await dotenv.load(fileName: EnvConfig.envFileName);
+    debugPrint('✓ Environment variables loaded from ${EnvConfig.envFileName}');
   } catch (e) {
     // If env file doesn't exist, continue with defaults
-    debugPrint('Warning: Could not load .env file: $e');
+    debugPrint('⚠ Warning: Could not load .env file (${EnvConfig.envFileName}): $e');
+    debugPrint('⚠ Using default configuration values');
   }
   
   // Initialize GetStorage instance

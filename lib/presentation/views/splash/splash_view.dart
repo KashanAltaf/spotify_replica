@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:spotify_replica/core/network/api_client.dart';
+import 'package:spotify_replica/core/theme/app_colors.dart';
+import 'package:spotify_replica/core/utils/app_assets.dart';
 import '../../routes/app_routes.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../data/services/auth_service.dart';
@@ -22,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
   Future<void> _navigateToNext() async {
     await Future.delayed(AppConstants.shortAnimation);
     
-    final authService = Get.find<AuthService>();
+    final authService = Get.put(AuthService(apiClient: ApiClient(), storage: GetStorage()));
     
     if (authService.isAuthenticated) {
       Get.offAllNamed(Routes.home);
@@ -34,18 +38,16 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.grayBgPrimary,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // App logo or icon
-            Icon(
-              Icons.music_note,
-              size: 80,
-              color: Theme.of(context).colorScheme.primary,
+            Image.asset(
+              AppAssets.iconLogo,
+              height: 150,
+              width: 150,
             ),
-            const SizedBox(height: 24),
-            const CircularProgressIndicator(),
           ],
         ),
       ),

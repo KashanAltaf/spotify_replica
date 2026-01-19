@@ -51,7 +51,7 @@ class AssetExamples extends StatelessWidget {
                 Row(
                   children: [
                     AppIcon(
-                      iconPath: AppAssets.iconHome,
+                      iconPath: AppAssets.iconLogo,
                       size: 32,
                     ),
                     const SizedBox(width: 16),
@@ -74,7 +74,7 @@ class AssetExamples extends StatelessWidget {
                 Row(
                   children: [
                     AppIconButton(
-                      iconPath: AppAssets.iconHome,
+                      iconPath: AppAssets.iconLogo,
                       onPressed: () {},
                       tooltip: 'Home',
                     ),
